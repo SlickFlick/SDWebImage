@@ -17,6 +17,7 @@
 
 static SDWebImagePrefetcher *instance;
 
+@synthesize delegate;
 @synthesize prefetchURLs;
 @synthesize maxConcurrentDownloads;
 @synthesize options;
@@ -76,7 +77,9 @@ static SDWebImagePrefetcher *instance;
 {
     _finishedCount++;
     NSLog(@"Prefetched %d out of %d", _finishedCount, [self.prefetchURLs count]);
-
+    if ([delegate respondsToSelector: @selector(SDWebImagePrefetcher:finished:outOf:)]) {
+        [delegate SDWebImagePrefetcher:self finished:_finishedCount outOf:[self.prefetchURLs count]];
+    }
     if ([self.prefetchURLs count] > _requestedCount)
     {
         [self startPrefetchingAtIndex:_requestedCount withManager:imageManager];
@@ -91,7 +94,9 @@ static SDWebImagePrefetcher *instance;
 {
     _finishedCount++;
     NSLog(@"Prefetched %d out of %d (Failed)", _finishedCount, [self.prefetchURLs count]);
-
+    if ([delegate respondsToSelector: @selector(SDWebImagePrefetcher:finished:outOf:)]) {
+        [delegate SDWebImagePrefetcher:self finished:_finishedCount outOf:[self.prefetchURLs count]];
+    }
     // Add last failed
     _skippedCount++;
 

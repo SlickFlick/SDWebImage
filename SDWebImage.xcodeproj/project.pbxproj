@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42EA75BF1569414F008EF377 /* SDWebImagePrefetcherDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42EA75BD15694141008EF377 /* SDWebImagePrefetcherDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42EA75C015694150008EF377 /* SDWebImagePrefetcherDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42EA75BD15694141008EF377 /* SDWebImagePrefetcherDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		535699B615113E7300A4C397 /* MKAnnotationView+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 535699B415113E7300A4C397 /* MKAnnotationView+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		535699B715113E7300A4C397 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 535699B515113E7300A4C397 /* MKAnnotationView+WebCache.m */; };
 		53761309155AD0D5005750A4 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D86148C56230056699D /* SDImageCache.m */; };
@@ -56,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42EA75BD15694141008EF377 /* SDWebImagePrefetcherDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcherDelegate.h; sourceTree = "<group>"; };
 		535699B415113E7300A4C397 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+WebCache.h"; path = "SDWebImage/MKAnnotationView+WebCache.h"; sourceTree = SOURCE_ROOT; };
 		535699B515113E7300A4C397 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKAnnotationView+WebCache.m"; path = "SDWebImage/MKAnnotationView+WebCache.m"; sourceTree = SOURCE_ROOT; };
 		53761325155AD0D5005750A4 /* libSDWebImageARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImageARC.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +193,7 @@
 				53922D8A148C56230056699D /* SDWebImageDecoder.m */,
 				53922D91148C56230056699D /* SDWebImagePrefetcher.h */,
 				53922D92148C56230056699D /* SDWebImagePrefetcher.m */,
+				42EA75BD15694141008EF377 /* SDWebImagePrefetcherDelegate.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -213,6 +217,7 @@
 				5376131F155AD0D5005750A4 /* UIButton+WebCache.h in Headers */,
 				53761320155AD0D5005750A4 /* UIImageView+WebCache.h in Headers */,
 				53761321155AD0D5005750A4 /* MKAnnotationView+WebCache.h in Headers */,
+				42EA75C015694150008EF377 /* SDWebImagePrefetcherDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +237,7 @@
 				53922DA5148C56230056699D /* UIButton+WebCache.h in Headers */,
 				53922DA7148C56230056699D /* UIImageView+WebCache.h in Headers */,
 				535699B615113E7300A4C397 /* MKAnnotationView+WebCache.h in Headers */,
+				42EA75BF1569414F008EF377 /* SDWebImagePrefetcherDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
