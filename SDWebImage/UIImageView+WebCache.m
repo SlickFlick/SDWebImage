@@ -1,14 +1,14 @@
-//
-//  MKAnnotationView+WebCache.m
-//  SDWebImage
-//
-//  Created by Olivier Poitrey on 14/03/12.
-//  Copyright (c) 2012 Dailymotion. All rights reserved.
-//
+/*
+ * This file is part of the SDWebImage package.
+ * (c) Olivier Poitrey <rs@dailymotion.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-#import "MKAnnotationView+WebCache.h"
+#import "UIImageView+WebCache.h"
 
-@implementation MKAnnotationView (WebCache)
+@implementation UIImageView (WebCache)
 
 - (void)setImageWithURL:(NSURL *)url
 {
@@ -23,12 +23,12 @@
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options
 {
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
+
     // Remove in progress downloader from queue
     [manager cancelForDelegate:self];
-    
+
     self.image = placeholder;
-    
+
     if (url)
     {
         [manager downloadWithURL:url delegate:self options:options];
@@ -49,12 +49,12 @@
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure;
 {
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
+
     // Remove in progress downloader from queue
     [manager cancelForDelegate:self];
-    
+
     self.image = placeholder;
-    
+
     if (url)
     {
         [manager downloadWithURL:url delegate:self options:options success:success failure:failure];
@@ -65,6 +65,11 @@
 - (void)cancelCurrentImageLoad
 {
     [[SDWebImageManager sharedManager] cancelForDelegate:self];
+}
+
+- (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url
+{
+    self.image = image;
 }
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image

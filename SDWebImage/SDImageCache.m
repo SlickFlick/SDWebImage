@@ -298,13 +298,22 @@ static SDImageCache *instance;
 
 - (void)removeImageForKey:(NSString *)key
 {
+    [self removeImageForKey:key fromDisk:YES];
+}
+
+- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk
+{
     if (key == nil)
     {
         return;
     }
 
     [memCache removeObjectForKey:key];
-    [[NSFileManager defaultManager] removeItemAtPath:[self cachePathForKey:key] error:nil];
+
+    if (fromDisk)
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:[self cachePathForKey:key] error:nil];
+    }
 }
 
 - (void)clearMemory
@@ -349,6 +358,36 @@ static SDImageCache *instance;
         size += [attrs fileSize];
     }
     return size;
+}
+
+- (int)getDiskCount
+{
+    int count = 0;
+    NSDirectoryEnumerator *fileEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:diskCachePath];
+    for (NSString *fileName in fileEnumerator)
+    {
+        count += 1;
+    }
+    
+    return count;
+}
+
+- (int)getMemorySize
+{
+    int size = 0;
+    
+    for(id key in [memCache allKeys])
+    {
+        UIImage *img = [memCache valueForKey:key];
+        size += [UIImageJPEGRepresentation(img, 0) length];
+    };
+    
+    return size;
+}
+
+- (int)getMemoryCount
+{
+    return [[memCache allKeys] count];
 }
 
 @end
