@@ -331,7 +331,6 @@ static SDWebImageManager *instance;
                 {
                     userInfo = nil;
                 }
-                //objc_msgSend(delegate, @selector(webImageManager:didProgressWithFraction:ofTotal:forURL:userInfo:), self, fraction,totalSize, downloader.url, userInfo);
                 
                 [delegate webImageManager:self didProgressWithSize:size ofTotal:totalSize forURL:downloader.url userInfo:userInfo];
             }
