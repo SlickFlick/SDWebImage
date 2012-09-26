@@ -310,6 +310,35 @@ static SDWebImageManager *instance;
 
 #pragma mark SDWebImageDownloaderDelegate
 
+
+- (void)imageDownloader:(SDWebImageDownloader *)downloader didUpdateWithSize:(NSInteger)size ofTotalSize:(long)totalSize
+{
+    // Notify all the downloadDelegates with this downloader
+    for (NSInteger idx = (NSInteger)[downloaders count] - 1; idx >= 0; idx--)
+    {
+        NSUInteger uidx = (NSUInteger)idx;
+        SDWebImageDownloader *aDownloader = [downloaders objectAtIndex:uidx];
+        if (aDownloader == downloader)
+        {
+            id<SDWebImageManagerDelegate> delegate = [downloadDelegates objectAtIndex:uidx];
+            SDWIRetain(delegate);
+            SDWIAutorelease(delegate);
+            
+            if ([delegate respondsToSelector:@selector(webImageManager:didProgressWithSize:ofTotal:forURL:userInfo:)])
+            {
+                NSDictionary *userInfo = [[downloadInfo objectAtIndex:uidx] objectForKey:@"userInfo"];
+                if ([userInfo isKindOfClass:NSNull.class])
+                {
+                    userInfo = nil;
+                }
+                //objc_msgSend(delegate, @selector(webImageManager:didProgressWithFraction:ofTotal:forURL:userInfo:), self, fraction,totalSize, downloader.url, userInfo);
+                
+                [delegate webImageManager:self didProgressWithSize:size ofTotal:totalSize forURL:downloader.url userInfo:userInfo];
+            }
+        }
+    }
+}
+
 - (void)imageDownloader:(SDWebImageDownloader *)downloader didUpdatePartialImage:(UIImage *)image
 {
     // Notify all the downloadDelegates with this downloader

@@ -27,6 +27,7 @@
  */
 - (void)imageDownloader:(SDWebImageDownloader *)downloader didUpdatePartialImage:(UIImage *)image;
 
+- (void)imageDownloader:(SDWebImageDownloader *)downloader didUpdateWithSize:(NSInteger)size ofTotalSize:(long)totalSize;
 /**
  * Called when download completed successfuly.
  *

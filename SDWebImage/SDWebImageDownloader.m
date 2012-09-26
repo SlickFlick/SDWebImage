@@ -9,6 +9,7 @@
 #import "SDWebImageDownloader.h"
 #import "SDWebImageDecoder.h"
 #import <ImageIO/ImageIO.h>
+#import <objc/message.h>
 
 @interface SDWebImageDownloader (ImageDecoder) <SDWebImageDecoderDelegate>
 @end
@@ -149,6 +150,10 @@ NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNot
         self.progressive = NO;
     }
 
+    if (self.progressive && expectedSize > 0 && [delegate respondsToSelector:@selector(imageDownloader:didUpdateWithSize:ofTotalSize:)])
+    {
+        objc_msgSend(delegate, @selector(imageDownloader:didUpdateWithSize:ofTotalSize:), self, [imageData length],expectedSize);
+    }
     if (self.progressive && expectedSize > 0 && [delegate respondsToSelector:@selector(imageDownloader:didUpdatePartialImage:)])
     {
         // The following code is from http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/

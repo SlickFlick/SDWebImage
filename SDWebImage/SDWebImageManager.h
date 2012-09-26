@@ -139,6 +139,7 @@ typedef NSString *(^CacheKeyFilter)(NSURL *url);
  * @see [SDWebImageManager downloadWithURL:delegate:options:]
  */
 - (void)downloadWithURL:(NSURL *)url delegate:(id)delegate options:(SDWebImageOptions)options userInfo:(NSDictionary *)info success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure;
+
 #endif
 
 /**

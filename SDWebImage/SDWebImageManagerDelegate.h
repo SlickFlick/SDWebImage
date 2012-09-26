@@ -27,6 +27,7 @@
  */
 - (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url userInfo:(NSDictionary *)info;
 - (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url;
+- (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithSize:(NSInteger)size ofTotal:(long)total forURL:(NSURL *)url userInfo:(NSDictionary *)info;
 
 /**
  * Called when image download is completed successfuly.
