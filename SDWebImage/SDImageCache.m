@@ -223,6 +223,11 @@ static natural_t get_free_memory(void)
 
 - (void)storeImage:(UIImage *)image imageData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk
 {
+    return [self storeImage:image imageData:data forKey:key toDisk:toDisk withCallback:nil];
+}
+
+- (void)storeImage:(UIImage *)image imageData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk withCallback:(void(^)())callback
+{
     if (!image || !key)
     {
         return;
@@ -249,6 +254,11 @@ static natural_t get_free_memory(void)
         NSInvocationOperation *operation = SDWIReturnAutoreleased([[NSInvocationOperation alloc] initWithTarget:self
                                                                                                        selector:@selector(storeKeyWithDataToDisk:)
                                                                                                          object:keyWithData]);
+        if (callback)
+        {
+            [operation setCompletionBlock:callback];
+        }        
+        
         [cacheInQueue addOperation:operation];
     }
 }
