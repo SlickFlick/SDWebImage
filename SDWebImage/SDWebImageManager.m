@@ -263,8 +263,10 @@ static SDWebImageManager *instance;
     }
 #endif
 
-    [cacheDelegates removeObjectAtIndex:idx];
-    [cacheURLs removeObjectAtIndex:idx];
+    if(cacheDelegates.count>idx)
+        [cacheDelegates removeObjectAtIndex:idx];
+    if(cacheURLs.count>idx)
+        [cacheURLs removeObjectAtIndex:idx];
 }
 
 - (void)imageCache:(SDImageCache *)imageCache didNotFindImageForKey:(NSString *)key userInfo:(NSDictionary *)info
