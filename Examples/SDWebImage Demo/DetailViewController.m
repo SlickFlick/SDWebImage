@@ -33,7 +33,21 @@
 {
     if (self.imageURL)
     {
-        [self.imageView setImageWithURL:self.imageURL placeholderImage:nil options:SDWebImageProgressiveDownload];
+        __block UIActivityIndicatorView *activityIndicator;
+        [self.imageView setImageWithURL:self.imageURL placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSUInteger receivedSize, long long expectedSize)
+        {
+            if (!activityIndicator)
+            {
+                [self.imageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                activityIndicator.center = self.imageView.center;
+                [activityIndicator startAnimating];
+            }
+        }
+        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType)
+        {
+            [activityIndicator removeFromSuperview];
+            activityIndicator = nil;
+        }];
     }
 }
 
