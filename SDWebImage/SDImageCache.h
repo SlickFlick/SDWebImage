@@ -85,6 +85,8 @@ typedef enum SDImageCacheType SDImageCacheType;
 
 - (void)storeImage:(UIImage *)image imageData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk;
 
+- (void)storeSyncImage:(UIImage *)image forKey:(NSString *)key;
+
 /**
  * Query the disk cache asynchronousely.
  *
