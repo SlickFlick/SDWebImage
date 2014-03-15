@@ -194,7 +194,7 @@
 
             // Update the data source, we must pass ALL the data, not just the new bytes
             CGImageSourceRef imageSource = CGImageSourceCreateIncremental(NULL);
-            CGImageSourceUpdateData(imageSource, (__bridge  CFDataRef)self.imageData, totalSize == self.expectedSize);
+            CGImageSourceUpdateData(imageSource, (__bridge  CFDataRef)self.imageData, (NSInteger)totalSize == self.expectedSize);
 
             if (width + height == 0)
             {
@@ -209,7 +209,7 @@
                 }
             }
 
-            if (width + height > 0 && totalSize < self.expectedSize)
+            if (width + height > 0 && (NSInteger)totalSize < self.expectedSize)
             {
                 // Create the image
                 CGImageRef partialImageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
