@@ -30,6 +30,9 @@
     size_t width, height;
 }
 
+@synthesize executing = _executing;
+@synthesize finished = _finished;
+
 - (id)initWithRequest:(NSURLRequest *)request queue:(dispatch_queue_t)queue options:(SDWebImageDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock cancelled:(void (^)())cancelBlock
 {
     if ((self = [super init]))
